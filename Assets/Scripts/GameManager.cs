@@ -6,7 +6,12 @@ using System.IO;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public List<string> highScoreNameList;
+    public List<int> highScoreList;
     public string Name;
+    public string highScoreName = "Name";
+    public int HighScore;
+
     
 
     void Start()
@@ -21,9 +26,22 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void UpdateHighScore(string name, int score){
+        if (highScoreList.Count == 0){
+            highScoreList.Add(score);
+            highScoreNameList.Add(name);
+
+        }
+        else{
+            for (int i = 0; i < highScoreList.Count ; i++)
+            {
+                int hscore = highScoreList[i];
+                if (score > hscore){
+                    highScoreList.Insert(i, score);
+                    highScoreNameList.Insert(i, name);
+                    break;
+                }
+            }
+        }
     }
 }

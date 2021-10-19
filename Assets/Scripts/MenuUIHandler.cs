@@ -12,16 +12,10 @@ using UnityEditor;
 public class MenuUIHandler : MonoBehaviour
 {
     [SerializeField] private TMP_InputField Name;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
     public void NewStart(){
-        GameManager gm = new GameManager();
-        gm.Name = Name.text;
+        GameManager.Instance.Name = Name.text;
         SceneManager.LoadScene(1);
     }
 
@@ -31,9 +25,5 @@ public class MenuUIHandler : MonoBehaviour
         #else
             Application.Quit(); // original code to quit Unity player
         #endif
-    }
-
-    public void ReturnToMenu(){
-        SceneManager.LoadScene(0);
     }
 }
