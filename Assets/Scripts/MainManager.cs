@@ -83,6 +83,7 @@ public class MainManager : MonoBehaviour
         GameOverText.SetActive(true);
         AddHighScore();
         GameManager.Instance.UpdateHighScore( GameManager.Instance.Name, m_Points);
-        GameObject.Find("Canvas").GetComponent<MainUIHandler>().UpdateLeaderboard(); 
+        GameObject.Find("Canvas").GetComponent<MainUIHandler>().UpdateLeaderboard();
+        GameManager.Instance.SavingData();
     }
 }

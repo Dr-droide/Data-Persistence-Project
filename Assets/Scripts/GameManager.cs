@@ -43,6 +43,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        if (highScoreList.Count > 10){
+            highScoreList.RemoveAt(highScoreList.Count - 1);
+            highScoreNameList.RemoveAt(highScoreNameList.Count - 1);
+        }
     }
 
     [System.Serializable]
