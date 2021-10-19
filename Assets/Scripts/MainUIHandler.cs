@@ -12,12 +12,17 @@ public class MainUIHandler : MonoBehaviour
 
 
     private void Start() {
+        GameManager.Instance.LoadData();
         highScoreText.text = string.Format("Best Score : {0} : {1}",GameManager.Instance.highScoreName , GameManager.Instance.HighScore);
         UpdateLeaderboard();
     }
 
     public void ReturnToMenu(){
         SceneManager.LoadScene(0);
+    }
+
+    private void OnApplicationQuit() {
+        GameManager.Instance.SavingData();
     }
 
     public void UpdateLeaderboard(){

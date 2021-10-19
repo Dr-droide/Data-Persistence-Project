@@ -44,4 +44,38 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    [System.Serializable]
+    class SaveData{
+        public List<string> highScoreNameList;
+        public List<int> highScoreList;
+        public int HighScore;
+        public string highScoreName;
+    }
+
+    public void SavingData(){
+        SaveData data = new SaveData();
+        data.highScoreList = highScoreList;
+        data.highScoreNameList = highScoreNameList;
+        data.HighScore = HighScore;
+        data.highScoreName =highScoreName;
+
+        string json = JsonUtility.ToJson(data);
+
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+    }
+
+    public void LoadData(){
+        string path = Application.persistentDataPath + "/savefile.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            highScoreList = data.highScoreList;
+            highScoreNameList = data.highScoreNameList;
+            HighScore = data.HighScore;
+            highScoreName = data.highScoreName;
+        }
+    }
 }
